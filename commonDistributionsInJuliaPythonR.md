@@ -21,9 +21,10 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 - **Poisson** : Number of independent arrivals in a given period given their average rate per unit time
 - **Pascal** : Number of independent binary trials until (and including) the n-th success (discrete time to n-th success).
 
+
 | Name     | Parameters   | Support   | PMF      | Expectations       | Variance    | CDF    |
 | -------- | ------------ | --------- | -------- | ------------------ | ----------- | ------ |
-| **D. Unif** | a,b ∈ Z with b ≧ a | $x \in \{a,a+1,...,b\}$| $\frac{1}{b-a+1}$ | $\frac{a+b}{2}$ | $\frac{(b-a)(b-a+2)}{12}$ |$\frac{x-a+1}{b-a+1}$ |
+| **D. Unif** | a,b ∈ Z with b ≧ a | $x ∈ \{a,a+1,...,b\}$| $\frac{1}{b-a+1}$ | $\frac{a+b}{2}$ | $\frac{(b-a)(b-a+2)}{12}$ |$\frac{x-a+1}{b-a+1}$ |
 | **Bern** | p ∈ [0,1] | x ∈ {0,1} | $p^x(1-p)^{1-x}$ | $p$ |  $p(1-p)$ | $\sum_{i=0}^x p^i(1-p)^{1-i}$ |
 | **Bin** | p ∈ [0,1], n in N⁺ | $x \in \{0,...,n\}$ | ${{n} \choose {x}} p^x(1-p)^{1-x}$ | $np$ | $n p(1-p)$ |  $\sum_{i=0}^{x} {{n} \choose {i}} p^i(1-p)^{1-i}$  |
 | **Cat** | $p_1,p_2,...,p_K$ with $p_k \in [0,1]$ and $\sum_{k=1}^K p_k =1$ | x ∈ {1,2,...,K} | $\prod_{k=1}^K p_k^{\mathbb{1}(k=x)}$ | | |
@@ -95,31 +96,16 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 
 Note: The Negative Binomial returns the number of failures before n successes instead of the total trials to n successes as the Pascal distribution
 
-## Distribution summaries ##
-|          |  Julia      | Python       |
-| -------- | ----------- | ------------ |
-| Mean     | `mean(d)`   | `d.mean()`   |
-| Variance | `var(d)`    | `d.var()`    |
-| Median   | `median(d)` | `d.median()` |
+## Usage ##
 
-## Sample
-- Julia:  `rand(d)`
-- Python: `d.rvs()`
-- R:      `r[distributionName](1,distributionParameters)`, e.g. `runif(1,10,20)`
-
-## Quantile
 $y = CDF(x)$, i.e. y ∈ [0,1]
 
-- Julia:  `quantile(d,y)`
-- Python: `d.ppf(y)`
-- R:      `q[distributionName](y, distributionParameters)`, e.g. `qunif(0.2,10,20)`
-
-## PDF/PMF
-- Julia:  `pdf(d,x)`
-- Python: `d.pmf(x)` for discrete r.v. and `d.pdf(x)` for continuous ones
-- R:      `d[distributionName](x, distributionParameters)`, e.g. `dunif(15,10,20)`
-
-## CDF
-- Julia:  `cdf(d,x)`
-- Python: `d.cdf(x)`
-- R:      `p[distributionName](x, distributionParameters)`, e.g. `punif(15,10,20)`
+|          |  Julia      | Python       | R |
+| -------- | ----------- | ------------ | -- |
+| **Mean**     | `mean(d)`   | `d.mean()`   |                                      |
+| **Variance** | `var(d)`    | `d.var()`    |                                      |
+| **Median**   | `median(d)` | `d.median()` |                                      |
+| **Sample**   | `rand(d)`   | `d.rvs()`    | `r[distributionName](1,distributionParameters)`, e.g. `runif(1,10,20)` |
+| **Quantiles** $(F^{-1}(y))$| `quantile(d,y)`| `d.ppf(y)` | `q[distributionName](y, distributionParameters)`, e.g. `qunif(0.2,10,20)` |
+| **PDF/PMF** | `pdf(d,x)` | `d.pmf(x)` for discrete r.v. and `d.pdf(x)` for continuous ones | `d[distributionName](x, distributionParameters)`, e.g. `dunif(15,10,20)` |
+| **CDF** | `cdf(d,x)` | `d.cdf(x)` | `p[distributionName](x, distributionParameters)`, e.g. `punif(15,10,20)` |
