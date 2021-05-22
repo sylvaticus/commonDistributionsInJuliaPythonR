@@ -33,7 +33,7 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 | **Hyperg** | $n_s,n_f, n \in \mathbb{N}_{0}$ |  $x \in \mathbb{N}_{0}$ with $x \leq n_s$ | $\frac{{n_s \choose x} {n_f \choose n-x} }{  (n_s + n_f) \choose n }$ | $n \frac{n_s}{n_s+n_f}$ | $n\frac{n_s}{n_s+n_f}\frac{n_f}{n_s+n_f}\frac{n_s+n_f+n}{n_s+n_f+1}$ | |
 | **Multiv hyperg** | $n_1,n_2,...,n_K$, $n$ with $n \in \mathbb{N}_{+}, n_i \in \mathbb{N}_{0}$ |  $x \in \mathbb{N}_{0}^K$ with $x_i \leq n_i ~ \forall i$, $\sum_{i=1}^K x_i = n$ | $\frac{\prod_{i=1}^K {n_i \choose x_i} }{ \sum_{i=1}^K n_i \choose  n }$ | $n\frac{n_i}{\sum_{i=1}^K n_i}$ | $n\frac{\sum_{j=1}^K n_j - n}{\sum_{j=1}^K n_j - 1} \frac{n_i}{\sum_{j=1}^K n_j} \left(1 - \frac{n_i}{\sum_{j=1}^K n_j} \right)$ | |
 | **Pois** | λ in R⁺ | x ∈ N₀ | $\frac{\lambda^xe^{-\lambda}}{x!}$ | $\lambda$ | $\lambda$ | |
-| **Pasc** | n ∈ N⁺, p in [0,1] | x in N⁺ | ${x-1 \choose n-1} p^n (1-p)^{x-n}$ | $\frac{n}{p}$ | $\frac{n(1-p)}{p^2}$ | |
+| **Pasc** | n ∈ N⁺, p in [0,1] | x ∈ [n, n+1, ..., ∞)  | ${x-1 \choose n-1} p^n (1-p)^{x-n}$ | $\frac{n}{p}$ | $\frac{n(1-p)}{p^2}$ | |
 
 
 |  Distribution     | Julia                            | Python  (stats.[distributionName])              | R                                |
@@ -67,7 +67,7 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 | **Unif** | a,b ∈ R with b ≧ a | x \in [a,b] | $\frac{1}{b-a}$ | $\frac{a+b}{2}$ | $\frac{(b-a)^2}{12}$ | $\frac{x-a}{b-a}$ |
 | **Expo** | λ ∈ R⁺ | x ∈ R⁺ | $\lambda e^{-\lambda x}$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ | $1-e^{-\lambda x}$ |
 | **Normal** | μ ∈R, σ² ∈ R⁺ | x ∈ R | $\frac{1}{\sigma \sqrt{2 \pi}}e^\frac{-(x-\mu)^2}{2\sigma^2}$ | $\mu$ | $\sigma^2$ | |
-| **Erlang** | n ∈ N⁺, λ ∈ R⁺ | x ∈ Rₒ | $\frac{\lambda^n x^{n-1} e^{-\lambda x} }{(n - 1) !}$ | $\frac{n}{\lambda}$ | $\frac{n}{\lambda^2}$ | |
+| **Erlang** | n ∈ N⁺, λ ∈ R⁺ | x ∈ R₊ | $\frac{\lambda^n x^{n-1} e^{-\lambda x} }{(n - 1) !}$ | $\frac{n}{\lambda}$ | $\frac{n}{\lambda^2}$ | |
 | **Cauchy** | x₀ ∈ R (_location_), γ ∈ R⁺ (_scale_) | $\frac{1}{\pi \gamma (1+(\frac{x-x_0}{\gamma})^2) }$ | | | |
 | **Chi-sq** | d ∈ N⁺ | x ∈ R⁺ | $\frac{1}{2^{}\frac{d}{2}\Gamma(\frac{d}{2})} x^{\frac{d}{2})-1}e^{-\frac{x}{2}}$ | $d$ | $2d$
 | **T** | ν ∈ R⁺ | x ∈ R | $\frac{ \Gamma(\frac{\nu +1}{2})}{\sqrt{\nu \pi} \Gamma(\frac{\nu}{2})} \left( 1 + \frac{x^2}{\nu} \right)^{- \frac{\nu + 1}{2}}$ |
