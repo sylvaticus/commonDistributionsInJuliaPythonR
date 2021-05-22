@@ -18,7 +18,7 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 - **Geometric** : Number of independent binary trials until (and including) the first success (discrete time to first success)
 - **Hypergeometric** : Number of successes sampling without replacement from a bin with given initial number of items representing successes  
 - **Multivariate hypergeometric** : Number of elements sampled in the various categories from a bin without replacement
-- **Poisson** : Number of independent arrivals in a given period given their average rate per unit time
+- **Poisson** : Number of independent arrivals in a given period given their average rate per that period length (or, alternatively, rate per period multiplied by number of periods)
 - **Pascal** : Number of independent binary trials until (and including) the n-th success (discrete time to n-th success).
 
 
