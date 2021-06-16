@@ -51,8 +51,9 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 
 ## Continuous distributions
 
-- **Uniform** complete ignorance, pick at random, all equally likely outcomes
-- **Exponential** waiting time to first event whose rate is λ (continuous time to first success)
+- **Uniform** Complete ignorance, pick at random, all equally likely outcomes
+- **Exponential** Waiting time to first event whose rate is λ (continuous time to first success)
+- **Laplace** Difference between two i.i.d. exponential r.v.
 - **Normal** The asymptotic distribution of a sample means  
 - **Erlang** Time of the n-th arrival
 - **Cauchy** The ratio of two independent zero-means normal r.v.
@@ -66,6 +67,7 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 | -------- | ------------ | --------- | -------- | ------------------ | ----------- | ------ |
 | **Unif** | a,b ∈ R with b ≧ a | x \in [a,b] | $\frac{1}{b-a}$ | $\frac{a+b}{2}$ | $\frac{(b-a)^2}{12}$ | $\frac{x-a}{b-a}$ |
 | **Expo** | λ ∈ R⁺ | x ∈ R⁺ | $\lambda e^{-\lambda x}$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ | $1-e^{-\lambda x}$ |
+| **Laplace** | μ ∈ R (_location_), b ∈ R⁺ (_scale_) | x ∈ R | $\frac{1}{2b} e^{-\frac{|x - \mu|}{b}}$ | $\mu$ | $2b^2$ | |
 | **Normal** | μ ∈R, σ² ∈ R⁺ | x ∈ R | $\frac{1}{\sigma \sqrt{2 \pi}}e^\frac{-(x-\mu)^2}{2\sigma^2}$ | $\mu$ | $\sigma^2$ | |
 | **Erlang** | n ∈ N⁺, λ ∈ R⁺ | x ∈ R₊ | $\frac{\lambda^n x^{n-1} e^{-\lambda x} }{(n - 1) !}$ | $\frac{n}{\lambda}$ | $\frac{n}{\lambda^2}$ | |
 | **Cauchy** | x₀ ∈ R (_location_), γ ∈ R⁺ (_scale_) | $\frac{1}{\pi \gamma (1+(\frac{x-x_0}{\gamma})^2) }$ | | | |
@@ -85,6 +87,7 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 | ----------------- | -------------------------------- | ------------------------------------------------|--------------------------------- |
 | Uniform           | `Uniform(lRange,uRange)`         | `uniform(lRange,uRange)`                        | `unif(lRange,uRange)`            |
 | Exponential       | `Exponential(rate)`              | `expon(rate)`                                   | `exp(rate)`                      |
+| Laplace           | `Laplace(loc, scale)`              | `laplace(loc,scale)`                                   | `laplace(loc,scale)`                      |
 | Normal            | `Normal(μ,sqrt(σsq))`            | `norm(μ,math.sqrt(σsq))`                        | `norm(μ,sqrt(σsq))`              |
 | Erlang            | `Erlang(n,rate)`                 | `erlang(n,rate)`                                | Use gamma                        |
 | Cauchy            | `Cauchy(μ, σ)`                   | `cauchy(μ, σ)`                                  | `cauchy(μ,σ)`                    |
@@ -98,14 +101,12 @@ Note: The Negative Binomial returns the number of failures before n successes in
 
 ## Usage ##
 
-$y = CDF(x)$, i.e. y ∈ [0,1]
-
 |          |  Julia      | Python       | R |
 | -------- | ----------- | ------------ | -- |
 | **Mean**     | `mean(d)`   | `d.mean()`   |                                      |
 | **Variance** | `var(d)`    | `d.var()`    |                                      |
 | **Median**   | `median(d)` | `d.median()` |                                      |
 | **Sample**   | `rand(d)`   | `d.rvs()`    | `r[distributionName](1,distributionParameters)`, e.g. `runif(1,10,20)` |
-| **Quantiles** $(F^{-1}(y))$| `quantile(d,y)`| `d.ppf(y)` | `q[distributionName](y, distributionParameters)`, e.g. `qunif(0.2,10,20)` |
+| **Quantiles** $(F^{-1}(y))$ with $y = CDF(x)$| `quantile(d,y)`| `d.ppf(y)` | `q[distributionName](y, distributionParameters)`, e.g. `qunif(0.2,10,20)` |
 | **PDF/PMF** | `pdf(d,x)` | `d.pmf(x)` for discrete r.v. and `d.pdf(x)` for continuous ones | `d[distributionName](x, distributionParameters)`, e.g. `dunif(15,10,20)` |
 | **CDF** | `cdf(d,x)` | `d.cdf(x)` | `p[distributionName](x, distributionParameters)`, e.g. `punif(15,10,20)` |
