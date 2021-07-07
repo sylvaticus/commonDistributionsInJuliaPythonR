@@ -55,9 +55,10 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 - **Exponential** Waiting time to first event whose rate is λ (continuous time to first success)
 - **Laplace** Difference between two i.i.d. exponential r.v.
 - **Normal** The asymptotic distribution of a sample means  
+- **Multivariate normal** 
 - **Erlang** Time of the n-th arrival
-- **Cauchy** The ratio of two independent zero-means normal r.v.
-- **Chi-squared** The sum of the squared of iid standard normal r.v.
+- **Cauchy** The ratio of two independent zero-means normal r.v. (heavy tail)
+- **Chi-squared** The sum of the squared of iid standard normal r.v. (or the l-2 squared norm), the variance of a normal sample
 - **T distribution** The distribution of a sample means
 - **F distribution** : The ratio of the ratio of two indep Χ² r.v. with their relative parameter
 - **Beta distribution** The Beta distribution
@@ -67,11 +68,12 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 | -------- | ------------ | --------- | -------- | ------------------ | ----------- | ------ |
 | **Unif** | a,b ∈ R with b ≧ a | x \in [a,b] | $\frac{1}{b-a}$ | $\frac{a+b}{2}$ | $\frac{(b-a)^2}{12}$ | $\frac{x-a}{b-a}$ |
 | **Expo** | λ ∈ R⁺ | x ∈ R⁺ | $\lambda e^{-\lambda x}$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda^2}$ | $1-e^{-\lambda x}$ |
-| **Laplace** | μ ∈ R (_location_), b ∈ R⁺ (_scale_) | x ∈ R | $\frac{1}{2b} e^{-\frac{|x - \mu|}{b}}$ | $\mu$ | $2b^2$ | |
+| **Laplace** | μ ∈ R (_location_), b ∈ R⁺ (_scale_) | x ∈ R | $\frac{1}{2b} e^{-\frac{\mid x - \mu \mid }{b}}$ | $\mu$ | $2b^2$ | |
 | **Normal** | μ ∈R, σ² ∈ R⁺ | x ∈ R | $\frac{1}{\sigma \sqrt{2 \pi}}e^\frac{-(x-\mu)^2}{2\sigma^2}$ | $\mu$ | $\sigma^2$ | |
+| **Multiv Normal** | μ ∈ Rᵈ, Σ ∈ $R^{d \times d}$ | x ∈ Rᵈ | $\frac{1}{\sqrt{(2 \pi)^n \det(\Sigma) }}e^{- \frac{1}{2}  (x-\mu)^T \Sigma^{-1} (x-\mu) }$ | $\mu$ | $\Sigma$ | |
 | **Erlang** | n ∈ N⁺, λ ∈ R⁺ | x ∈ R₊ | $\frac{\lambda^n x^{n-1} e^{-\lambda x} }{(n - 1) !}$ | $\frac{n}{\lambda}$ | $\frac{n}{\lambda^2}$ | |
-| **Cauchy** | x₀ ∈ R (_location_), γ ∈ R⁺ (_scale_) | $\frac{1}{\pi \gamma (1+(\frac{x-x_0}{\gamma})^2) }$ | | | |
-| **Chi-sq** | d ∈ N⁺ | x ∈ R⁺ | $\frac{1}{2^{}\frac{d}{2}\Gamma(\frac{d}{2})} x^{\frac{d}{2})-1}e^{-\frac{x}{2}}$ | $d$ | $2d$
+| **Cauchy** | x₀ ∈ R (_location_), γ ∈ R⁺ (_scale_) | x ∈ R | $\frac{1}{\pi \gamma (1+(\frac{x-x_0}{\gamma})^2) }$ | NDEF | NDEF | |
+| **Chi-sq** | d ∈ N⁺ | x ∈ R⁺ | $\frac{1}{2^{d/2} \Gamma(d/2)} x^{(\frac{d}{2}-1)}e^{-\frac{x}{2}}$ | $d$ | $2d$
 | **T** | ν ∈ R⁺ | x ∈ R | $\frac{ \Gamma(\frac{\nu +1}{2})}{\sqrt{\nu \pi} \Gamma(\frac{\nu}{2})} \left( 1 + \frac{x^2}{\nu} \right)^{- \frac{\nu + 1}{2}}$ |
 | **F** | d₁ ∈ N⁺ d₂ ∈ N⁺ | x ∈ R⁺ |  $\frac {\sqrt {\frac {(d_1 x)^{d_1} d_2^{d_2} } {(d_1 x + d_2)^{d_1 + d_2} } }} {x \mathrm {B} \left( \frac{d_1}{2},\frac {d_2}{2} \right) }$ | $\frac{d_2}{d_2 -2}$ for $d_2 > 2$ | $\frac{2 d_2^2 (d_1 + d_2 -2)}{d_1 (d_2 -2)^2 (d_2 -4)}$ for $d_2 > 4$ | |
 | **Beta** | α, β ∈ R⁺ | x ∈ [1,0] | $\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}$ | $\frac{\alpha}{\alpha+\beta}$ | $\frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}$| |
