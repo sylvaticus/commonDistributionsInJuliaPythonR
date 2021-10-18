@@ -18,7 +18,7 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 - **Geometric** : Number of independent binary trials until (and including) the first success (discrete time to first success)
 - **Hypergeometric** : Number of successes sampling without replacement from a bin with given initial number of items representing successes  
 - **Multivariate hypergeometric** : Number of elements sampled in the various categories from a bin without replacement
-- **Poisson** : Number of independent arrivals in a given period given their average rate per that period length (or, alternatively, rate per period multiplied by number of periods)
+- **Poisson** : Number of independent arrivals in a given period given their average rate per that period length (or, alternatively, rate per period multiplied by number of periods). Approx of Binomial with n large and p small.
 - **Pascal** : Number of independent binary trials until (and including) the n-th success (discrete time to n-th success).
 
 
@@ -26,7 +26,7 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 | -------- | ------------ | --------- | -------- | ------------------ | ----------- | ------ |
 | **D. Unif** | a,b ∈ Z with b ≧ a | $x ∈ \{a,a+1,...,b\}$| $\frac{1}{b-a+1}$ | $\frac{a+b}{2}$ | $\frac{(b-a)(b-a+2)}{12}$ |$\frac{x-a+1}{b-a+1}$ |
 | **Bern** | p ∈ [0,1] | x ∈ {0,1} | $p^x(1-p)^{1-x}$ | $p$ |  $p(1-p)$ | $\sum_{i=0}^x p^i(1-p)^{1-i}$ |
-| **Bin** | p ∈ [0,1], n in N⁺ | $x \in \{0,...,n\}$ | ${{n} \choose {x}} p^x(1-p)^{1-x}$ | $np$ | $n p(1-p)$ |  $\sum_{i=0}^{x} {{n} \choose {i}} p^i(1-p)^{1-i}$  |
+| **Bin** | p ∈ [0,1], n in N⁺ | $x \in \{0,...,n\}$ | ${{n} \choose {x}} p^x(1-p)^{n-x}$ | $np$ | $n p(1-p)$ |  $\sum_{i=0}^{x} {{n} \choose {i}} p^i(1-p)^{1-i}$  |
 | **Cat** | $p_1,p_2,...,p_K$ with $p_k \in [0,1]$ and $\sum_{k=1}^K p_k =1$ | x ∈ {1,2,...,K} | $\prod_{k=1}^K p_k^{\mathbb{1}(k=x)}$ | | |
 | **Multin** | $n, p_1,p_2,...,p_K$ with $p_k \in [0,1]$, $\sum_{k=1}^K p_k =1$ and $n \in N^+$| $x \in \mathbb{N}_{0}^K$ | ${{n} \choose {x_1, x_2,...,x_K}} \prod_{k=1}^K p_k^{x_K}$ | | | |
 | **Geom** | p ∈ [0,1] | x ∈ N⁺|  $(1-p)^{x-1}p$ | $\frac{1}{p}$ | $\frac{1-p}{p^2}$ | $1-(1-p)^x$  |
@@ -79,7 +79,7 @@ Please report errors on https://github.com/sylvaticus/commonDistributionsInJulia
 | **Beta** | α, β ∈ R⁺ | x ∈ [1,0] | $\frac{1}{B(\alpha,\beta)}x^{\alpha-1}(1-x)^{\beta-1}$ | $\frac{\alpha}{\alpha+\beta}$ | $\frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}$| |
 | **Gamma** | α ∈ R⁺ (_shape_), β ∈ R⁺ (_rate_) | x ∈ R⁺ | $\frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}$ | $\frac{\alpha}{\beta}$ |  $\frac{\alpha}{\beta^2}$ | |
 
-**Beta function** : $B(\alpha,\beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)} = \frac{\alpha + \beta}{\alpha \beta}$ \
+**Beta function** : $B(\alpha,\beta) = \int_{0}^{1} x^{\alpha-1}(1-x)^{\beta-1} dx = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha+\beta)} = ~(\alpha,\beta \in R)  ~\frac{\alpha + \beta}{\alpha \beta}$ \
 **Gamma function**: $\Gamma(x)=(x-1)! ~ \forall x \in N$
 
 
